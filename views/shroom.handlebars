@@ -1,0 +1,33 @@
+<div class="container text-center mt-3">
+  <h1>{{mushroom.mushroom_name}}</h1>
+</div>
+<div class="container d-flex justify-content-center">
+  <div>
+
+  </div>
+  <div class="card rounded mt-3" style="width: 18rem;">
+    <img
+      src="{{mushroom.url}}"
+      class="card-img-top" alt="...">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Date</li>
+    </ul>
+    <div class="card-body">
+      <h5 class="card-title">{{mushroom.id}}: {{mushroom.mushroom_name}}</h5>
+      <p class="card-text">{{mushroom.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{{mushroom.description}}}</li>
+    </ul>
+    <div class="card-body d-flex justify-content-center">
+      <a href="#" class="card-link">A link?</a>
+    </div>
+  </div>
+</div>
+  <div class="  d-flex container justify-content-center mt-3">
+      <div  id="map"></div>
+  </div>  
+<div class="container d-flex justify-content-center">
+  <a href="/mush-room" class="mt-3 mb-3 text-dark"> <img src="/images/mushroom.png" alt=""> Back to the Mush-room!</a>
+</div>
+

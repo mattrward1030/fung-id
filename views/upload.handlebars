@@ -1,0 +1,77 @@
+<form class="container" id="mushroom-form" action="">
+    <div class="form-group">
+        <label for="mushroom-name">Mushroom Name</label>
+        <input id="mushroom-name" type="text" class="form-control" id="mushroom-name" placeholder="Mushroom Name">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input id="description" type="text" class="form-control" id="description" placeholder="Description">
+    </div>
+    <div class="form-group">
+        <label for="image-url">Image Url</label>
+        <input id="image-url" type="text" class="form-control" id="description" placeholder="Image Url">
+    </div>
+    <button id="submit-button" class="btn btn-primary">Submit</button>
+</form>
+
+<button id="upload_widget" class="cloudinary-button">Upload files</button>
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    let imageInput = document.querySelector("#image-url")
+
+    function latitudeStringToDecimal(latitude) {
+        let latBits = latitude.split(/[^\d\w\.]+/);
+        let lat = [latBits[0], latBits[2], latBits[3], latBits[4]];
+
+        let superLat1 = parseFloat(latBits[0]);
+        let superLat2 = parseFloat(latBits[2] / 60);
+        let superLat3 = parseFloat(latBits[3] / 3600);
+        let superLat = (superLat1 + superLat2 + superLat3).toFixed(6);
+
+        if (latBits[4] == "S") {
+            latBits[0] = superLat * -1
+        }
+        return superLat;
+    }
+
+    function longitudeStringToDecimal(longitude) {
+        let longBits = longitude.split(/[^\d\w\.]+/);
+        let long = [longBits[0], longBits[2], longBits[3], longBits[4]];
+
+        let superLong1 = parseFloat(longBits[0]);
+        let superLong2 = parseFloat(longBits[2] / 60);
+        let superLong3 = parseFloat(longBits[3] / 3600);
+        let superLong = (superLong1 + superLong2 + superLong3).toFixed(6);
+
+        if (longBits[4] == "W") {
+            superLong = superLong * -1;
+        }
+        return superLong;
+    }
+
+    var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'fung-id',
+        uploadPreset: 'cdg9mwym'
+    }, (error, result) => {
+        if (!error && result && result.event === "success") {
+            console.log('Done! Here is the image info: ', result.info);
+            var lat = latitudeStringToDecimal(result.info.image_metadata.GPSLatitude);
+            var lon = longitudeStringToDecimal(result.info.image_metadata.GPSLongitude);
+            var url = result.info.url;
+            imageInput.value = url;
+            const response = fetch("/upload", {
+                method: "POST",
+                body: JSON.stringify({ lat, lon, url }),
+                headers: { "Content-Type": "application/json" },
+            });
+        }
+    }
+    )
+
+    document.getElementById("upload_widget").addEventListener("click", function () {
+        myWidget.open();
+    }, false);
+</script>
+<script type="text/javascript" src="/js/upload.js"></script>

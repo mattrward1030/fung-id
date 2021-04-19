@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <title>fung.id</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img id="brand-mushroom" src="/images/brandmushroom.png" alt=""> fung.id</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          {{#if loggedIn}}
+          <li class="nav-item">
+            <a id="logout" class="nav-link">Logout</a>
+          </li>
+          {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {{/if}}
+          <li class="nav-item">
+            <a class="nav-link" href="/upload">Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mush-room">Mush-Room</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Map</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {{{body}}}
+
+
+
+  {{#if loggedIn}}
+  <script src="./js/logout.js"></script>
+  {{/if}}
+  <script>
+    var map = L.map('map').setView([39.718335, -74.677352], 13);
+    var marker = L.marker([39.718336, -74.677352]).addTo(map);
+    var marker = L.marker([39.719956, -74.699351]).addTo(map);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v9',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: "pk.eyJ1IjoibWF0dHJ3YXJkMTAzMCIsImEiOiJja25raTJiM28wOXAzMnpveG4xdmF4Ymx5In0.4WC9PQzRBTPj5nM0C43i2w"
+    }).addTo(map);
+  </script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+  <script src="/js/login.js"></script>
+  <script src="/js/mushroom-post.js"></script>
+  <script type="text/javascript" src="/js/upload.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+    integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+    integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+    crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+</body>
+
+</html>

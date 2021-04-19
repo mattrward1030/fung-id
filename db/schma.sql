@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS fungi_db;
+
+CREATE DATABASE fungi_db;
