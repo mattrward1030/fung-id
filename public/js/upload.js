@@ -123,7 +123,7 @@ const showWidget = async (event) => {
                     alert('Failed to upload image.');
                 }
             }
-        }
+          }
     );
     widget.open();
 

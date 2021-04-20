@@ -8,11 +8,14 @@ const postFormHandler = async (e) => {
   e.preventDefault();
   const mushroomName = mushroomNameInput.value.trim();
   const description = descriptionInput.value.trim();
+  const lat = document.querySelector("#lat").value.trim();
+  const lon = document.querySelector("#lon").value.trim();
   const url = urlInput.value.trim();
+  console.log(lat + lon);
   if (mushroomName && description) {
     const response = await fetch("/api/users/post", {
       method: "POST",
-      body: JSON.stringify({ mushroomName, description, url }),
+      body: JSON.stringify({ mushroomName, description, url, lat, lon }),
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
