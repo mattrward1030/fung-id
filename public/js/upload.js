@@ -117,14 +117,14 @@ const showWidget = async (event) => {
                     body: JSON.stringify({ latitude, longitude, url }),
                     headers: { 'Content-Type': 'application/json' },
                 });
-                if (response.ok) {
+                if  (response.ok) {
                     document.location.replace('/mush-room');
                 } else {
                     alert('Failed to upload image.');
                 }
             }
-          }
-    );
+         }
+        );
     widget.open();
 
 
