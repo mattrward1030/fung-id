@@ -3,15 +3,17 @@ const mushroomNameInput = document.querySelector("#mushroom-name");
 const descriptionInput = document.querySelector("#description");
 const mushroomForm = document.querySelector("#mushroom-form");
 const urlInput = document.querySelector("#image-url");
+const latInput = document.querySelector("#lat");
+const lonInput = document.querySelector("#lon");
 
 const postFormHandler = async (e) => {
   e.preventDefault();
   const mushroomName = mushroomNameInput.value.trim();
   const description = descriptionInput.value.trim();
-  const lat = document.querySelector("#lat").value.trim();
-  const lon = document.querySelector("#lon").value.trim();
   const url = urlInput.value.trim();
-  console.log(lat + lon);
+  const lat = latInput.value.trim();
+  const lon = lonInput.value.trim();
+
   if (mushroomName && description) {
     const response = await fetch("/api/users/post", {
       method: "POST",
@@ -25,5 +27,5 @@ const postFormHandler = async (e) => {
     }
   }
 };
-
+ç
 mushroomForm.addEventListener("submit", postFormHandler);

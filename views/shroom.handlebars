@@ -8,10 +8,10 @@
   </div>
   <div class="card rounded mt-3" style="width: 18rem;">
     <img src="{{mushroom.url}}" class="card-img-top" alt="...">
-   
+
     <div class="card-body">
       <h5 class="card-title">#{{mushroom.id}}: {{mushroom.mushroom_name}}</h5>
-      
+
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Description: {{{mushroom.description}}}</li>
@@ -29,3 +29,17 @@
   <a href="/login">MUST LOGIN TO VIEW IMAGES</a>
 </div>
 {{/if}}
+
+<script>
+  var map = L.map('map').setView([39.718336, -74.677352], 13);
+  var marker = L.marker([39.718336, -74.677352]).addTo(map);
+  var marker = L.marker([39.719956, -74.699351]).addTo(map);
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v9',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: "pk.eyJ1IjoibWF0dHJ3YXJkMTAzMCIsImEiOiJja25raTJiM28wOXAzMnpveG4xdmF4Ymx5In0.4WC9PQzRBTPj5nM0C43i2w"
+  }).addTo(map);
+</script>
