@@ -23,17 +23,17 @@ Post.init(
     latitude: {
       type: DataTypes.DECIMAL(10, 6),
       allowNull: true,
-      validate: {
-        isDecimal: true,
-      },
+      // validate: {
+      //   isDecimal: true,
+      // },
     },
 
     longitude: {
       type: DataTypes.DECIMAL(10, 6),
       allowNull: true,
-      validate: {
-        isDecimal: true,
-      },
+      // validate: {
+      //   isDecimal: true,
+      // },
     },
 
     url: {

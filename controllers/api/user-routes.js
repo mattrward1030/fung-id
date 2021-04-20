@@ -91,6 +91,8 @@ router.post("/post", async (req, res) => {
       mushroom_name: req.body.mushroomName,
       description: req.body.description,
       url: req.body.url,
+      latitude: req.body.lat,
+      longitude: req.body.lon,
     });
     // req.session.save(() => {
     //   req.session.loggedIn = true;
