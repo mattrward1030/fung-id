@@ -5,11 +5,19 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input id="description" type="text" class="form-control" id="description" placeholder="Description">
+        <input id="description" type="text" class="form-control"  placeholder="Description">
     </div>
     <div class="form-group">
         <label for="image-url">Image Url</label>
-        <input id="image-url" type="text" class="form-control" id="description" placeholder="Image Url">
+        <input id="image-url" type="text" class="form-control"  placeholder="Image Url">
+    </div>
+    <div class="form-group">
+        <label for="lat">Latitude</label>
+        <input id="lat" type="text" class="form-control"  placeholder="Latitude">
+    </div>
+    <div class="form-group">
+        <label for="lon">Longitude</label>
+        <input id="lon" type="text" class="form-control"  placeholder="Longitude">
     </div>
     <button id="submit-button" class="btn btn-primary">Submit</button>
 </form>
@@ -20,6 +28,8 @@
 
 <script type="text/javascript">
     let imageInput = document.querySelector("#image-url")
+    let lonInput = document.querySelector("#lon");
+    let latInput = document.querySelector("#lat")
 
     function latitudeStringToDecimal(latitude) {
         let latBits = latitude.split(/[^\d\w\.]+/);
@@ -60,7 +70,11 @@
             var lat = latitudeStringToDecimal(result.info.image_metadata.GPSLatitude);
             var lon = longitudeStringToDecimal(result.info.image_metadata.GPSLongitude);
             var url = result.info.url;
+
             imageInput.value = url;
+            lonInput.value = lon;
+            latInput.value = lat;
+
             const response = fetch("/upload", {
                 method: "POST",
                 body: JSON.stringify({ lat, lon, url }),
