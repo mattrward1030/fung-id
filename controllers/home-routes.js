@@ -43,41 +43,40 @@ router.get("/mush-room", async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
-router.get('/mush-room/:id', (req, res) => {
+router.get("/mush-room/:id", (req, res) => {
   Post.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
     attributes: [
-      'id',
-      'mushroom_name',
-      'description',
-      'url'
+      "id",
+      "mushroom_name",
+      "description",
+      "url",
+      "latitude",
+      "longitude",
     ],
     include: [
       {
         model: User,
-        attributes: ['id']
-      }
-    ]
+        attributes: ["id"],
+      },
+    ],
   })
-    .then(postData => {
+    .then((postData) => {
       if (!postData) {
-        res.status(404).json({ message: 'User does not have nay posts!' });
+        res.status(404).json({ message: "User does not have nay posts!" });
         return;
       }
       const mushroom = postData.get({ plain: true });
       console.log(mushroom);
-      res.render('shroom', { mushroom, loggedIn: req.session.loggedIn });
-
-
+      res.render("shroom", { mushroom, loggedIn: req.session.loggedIn });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
-
 
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect to the homepage
@@ -103,9 +102,7 @@ router.post("/upload", async (req, res) => {
   }
 });
 
-
 router.get("/upload", async (req, res) => {
-
   res.render("upload", { loggedIn: req.session.loggedIn });
 });
 module.exports = router;
