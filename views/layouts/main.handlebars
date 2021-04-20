@@ -55,6 +55,19 @@
   {{#if loggedIn}}
   <script src="./js/logout.js"></script>
   {{/if}}
+  <script>
+    var map = L.map('map').setView([39.718335, -74.677352], 13);
+    var marker = L.marker([39.718336, -74.677352]).addTo(map);
+    var marker = L.marker([39.719956, -74.699351]).addTo(map);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v9',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: "pk.eyJ1IjoibWF0dHJ3YXJkMTAzMCIsImEiOiJja25raTJiM28wOXAzMnpveG4xdmF4Ymx5In0.4WC9PQzRBTPj5nM0C43i2w"
+    }).addTo(map);
+  </script>
   <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
   <script src="/js/login.js"></script>
   <script src="/js/mushroom-post.js"></script>
