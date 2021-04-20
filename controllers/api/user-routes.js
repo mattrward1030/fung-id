@@ -3,6 +3,19 @@ const { request } = require("express");
 const { User } = require("../../models");
 const { Post } = require("../../models");
 
+
+router.get('/', async (req, res) => {
+  try {
+    const userdata = await User.findAll({
+      include: { model: Post }
+    });
+
+    res.status(200).json(userdata);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // CREATE new user
 router.post("/", async (req, res) => {
   try {

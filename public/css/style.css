@@ -194,3 +194,15 @@ button:focus {
     transform: translateY(-50%) scale(1.25, 1);
   }
 }
+
+
+#loginAuth {
+  font-size: 400%;
+  color: black;
+  text-align: center;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#loginAuth a {
+  color: black;
+}
