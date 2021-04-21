@@ -3,7 +3,7 @@
 This application allows users to add, annotate, view, and utilize photographs of their foraging finds. Upon uploading an image to Cloudinary's hosting service, a data object is returned from which the image's url, coordinates, and created date are returned and then inserted into our SQL database. A thumbnail of the image is immediately appended to the gallery view which, when clicked, expands to an individual view where the image, notes, and location data can be referenced for future foraging forays. 
 ## Installation
 1. ```npm install ```
-    ### Dev Dependenies:
+ ### Dev Dependenies:
     ``express``
     ```sequelize```
     ```bcrypt```
